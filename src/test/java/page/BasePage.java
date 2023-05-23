@@ -8,13 +8,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
 
 public class BasePage {
-    private WebDriver driver;
+    public WebDriver driver;
     private WebDriverWait wait;
     JavascriptExecutor js;
 
@@ -64,6 +65,9 @@ public class BasePage {
         waitFor(locator);
         return findBy(locator).getText();
     }
+    protected Boolean contains(By locator, String text) {
+        return getText(locator).contains(text);
+    }
 //    public void scrollDown(){
 //        js.executeScript("window.scrollBy(0,600)");
 //    }
@@ -78,13 +82,29 @@ public class BasePage {
         js.executeScript("window.scrollBy(0,500)");
 
     }
+
+    protected void selection(By locator, String text) {
+        Select select = new Select(findBy(locator));
+        select.selectByVisibleText(text);
+    }
+    public void scrollToElement(By locator) {
+    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", findBy(locator));
+}
+
     public List<WebElement> listElements(By locator){
 
         return driver.findElements(locator);
     }
 
+
+
     public String getTextAttribute(By locator) {
         return findBy(locator).getAttribute("innerHTML");
     }
+    public void elementJS( By locator) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", findBy(locator));
+
+    }
+
 
 }

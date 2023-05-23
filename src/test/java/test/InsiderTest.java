@@ -3,43 +3,48 @@ package test;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import page.CareersPage;
-import page.HomePage;
+import page.*;
 
 public class InsiderTest extends  BaseTest{
+
+    HomePage homePage;
+    CareersPage careersPage;
+    QualityAssurancePage qualityAssurancePage;
+    AllOpenPositionPage allOpenPositionPage;
+    LeverAppFormPage leverAppFormPage;
 
 
     @Test
     @Description("")
     public void test() throws InterruptedException {
-//        initializeBrowser("chrome");
-//        HomePage homePage= new HomePage(driver);
-//        homePage.getInsiderPage()
-//                .acceptCookies()
-//                .isInsiderMainPageOpened()
-//                .clickCareersButton();
+        //initializeBrowser("chrome");
+        homePage= new HomePage(driver);
+        careersPage =new CareersPage(driver);
+        qualityAssurancePage=new QualityAssurancePage(driver);
+        allOpenPositionPage=new AllOpenPositionPage(driver);
+        leverAppFormPage=new LeverAppFormPage(driver);
 
-//        CareersPage careersPage=new CareersPage(driver);
-//        careersPage.verifyCareersPageOpened()
-//                .checkBlocksOfCareerPage()
-//                .checkIsOpenedCareerPage()
-//                .clickSeeAllTeams();
+        homePage.getInsiderPage()
+                .acceptCookies()
+                .isInsiderMainPageOpened()
+                .clickCareersButton();
 
+        careersPage.verifyCareersPageOpened()
+                .checkIfBlocksOfCareerPageLoaded()
+                .checkIsOpenedCareerPage()
+                .clickSeeAllTeams()
+                .clickQualityAssurance();
+        qualityAssurancePage.clickAllQAJobs();
+        allOpenPositionPage.clickFilterLocationDropdown()
+                .selectLocationForIstanbul()
+                .selectDepartmentForQualityAssurance()
+                .checkJobList();
+//                .checkDepartmentNames()
+//                .checkPositionNames()
+//                .checkLocationNames()
+//                .selectApplyNow()
+//                .checkIsOpenedLeverApplicationPage();
 
-//
-//        new CareersPage(driver).verifyCareersPageOpened()
-//                .selectTeam("Quality Assurance");
-//
-//        new QAPage(driver).clickSeeAllJobsBtn();
-//
-//        new PositionsPage(driver).filterJobs("Istanbul, Turkey")
-//                .checkPresenceOfPositions()
-//                .verifyPositionsContainsJobTitle("Quality Assurance")
-//                .verifyDepartmentsText("Quality Assurance")
-//                .verifyLocationsText("Istanbul, Turkey")
-//                .clickApplyButton();
-//
-//        new LeverPage(driver).verifyLeverPageOpened();
     }
 
 }

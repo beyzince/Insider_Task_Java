@@ -7,14 +7,15 @@ public class QualityAssurancePage extends  BasePage{
 
 
 
-    private By allQAJobsButtonLocator=By.cssSelector("a[class='btn btn-outline-secondary rounded text-medium mt-2 py-3 px-lg-5 w-100 w-md-50']");
+
+    private By allQAJobsButtonLocator=By.xpath("//a[normalize-space()='See all QA jobs']");
 
     public QualityAssurancePage(WebDriver driver) {
         super(driver);
     }
 
-//    public AllOpenPositionPage  clickAllQAJobs(){
-//        click(allQAJobsButtonLocator);
-//        return  new AllOpenPositionPage();
-//    }
+    public AllOpenPositionPage  clickAllQAJobs(){
+        click(allQAJobsButtonLocator);
+        return  new AllOpenPositionPage(driver);
+    }
 }

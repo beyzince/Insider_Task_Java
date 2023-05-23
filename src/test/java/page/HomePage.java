@@ -10,10 +10,10 @@ public class HomePage extends BasePage{
     static  String PAGE_URL="https://useinsider.com/";
 
     private By acceptCookiesButton = By.id("wt-cli-accept-all-btn");
-    private By moreButtonLocator = By.id("mega-menu-1");
+    private By moreButtonLocator = By.xpath("//span[normalize-space()='More']");
 
     private By careersButtonLocator = By.xpath("//a[@class='d-flex flex-column flex-fill' and @href='https://useinsider.com/careers/']");
-    private  By  careesButton=By.cssSelector(".dropdown-item .flex-row a h5");
+    private  By  careesButton=By.xpath("//h5[normalize-space()='Careers']");
 
     private By navLogoInsider = By.xpath("//*[@id=\"announce\"]");
 
@@ -49,7 +49,6 @@ public class HomePage extends BasePage{
 
 
     public  HomePage clickCareersButton(){
-        System.out.println("before more button");
         click(moreButtonLocator);
         click(careersButtonLocator);
         return  this;
