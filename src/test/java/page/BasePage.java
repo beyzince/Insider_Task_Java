@@ -19,8 +19,6 @@ public class BasePage {
     private WebDriverWait wait;
     JavascriptExecutor js;
 
-    private final static int TIME_OUT_DURATION = 20;
-
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -29,11 +27,12 @@ public class BasePage {
         PageFactory.initElements(driver,this);
     }
 
-    private  void waitFor(By locator){
+    public void waitFor(By locator){
         wait.until(ExpectedConditions.elementToBeClickable(locator));
 
 
     }
+
     private WebElement findBy(By locator){
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         return driver.findElement(locator);
@@ -98,9 +97,9 @@ public class BasePage {
 
 
 
-    public String getTextAttribute(By locator) {
-        return findBy(locator).getAttribute("innerHTML");
-    }
+//    public String getTextAttribute(By locator) {
+//        return findBy(locator).getAttribute("innerHTML");
+//    }
     public void elementJS( By locator) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", findBy(locator));
 

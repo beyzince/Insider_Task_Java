@@ -11,7 +11,7 @@ public class LeverAppFormPage extends  BasePage{
     }
 
     public LeverAppFormPage checkIsOpenedLeverApplicationPage() {
-        Assert.assertEquals("Insider open positions | Insider", getPageTitle(), "Not on Lever App page!");
+        Assert.assertEquals("Insider open Positions | Insider", getPageTitle(), "Not on Lever App page!");
         return this;
     }
 }

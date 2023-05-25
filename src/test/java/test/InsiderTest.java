@@ -15,7 +15,7 @@ public class InsiderTest extends  BaseTest{
 
 
     @Test
-    @Description("")
+    @Description("Insider Test Cases")
     public void test() throws InterruptedException {
         //initializeBrowser("chrome");
         homePage= new HomePage(driver);
@@ -31,19 +31,26 @@ public class InsiderTest extends  BaseTest{
 
         careersPage.verifyCareersPageOpened()
                 .checkIfBlocksOfCareerPageLoaded()
-                .checkIsOpenedCareerPage()
                 .clickSeeAllTeams()
                 .clickQualityAssurance();
         qualityAssurancePage.clickAllQAJobs();
         allOpenPositionPage.clickFilterLocationDropdown()
                 .selectLocationForIstanbul()
                 .selectDepartmentForQualityAssurance()
-                .checkJobList();
-//                .checkDepartmentNames()
-//                .checkPositionNames()
-//                .checkLocationNames()
-//                .selectApplyNow()
-//                .checkIsOpenedLeverApplicationPage();
+                .checkJobList()
+                        .selectApplyNow()
+                                .checkIsOpenedLeverApplicationPage();
+
+
+
+
+
+
+
+
+
+
+
 
     }
 

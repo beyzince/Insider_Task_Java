@@ -6,9 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class QualityAssurancePage extends  BasePage{
 
 
-
-
-    private By allQAJobsButtonLocator=By.xpath("//a[normalize-space()='See all QA jobs']");
+    public static By allQAJobsButtonLocator=By.xpath("//a[normalize-space()='See all QA jobs']");
 
     public QualityAssurancePage(WebDriver driver) {
         super(driver);

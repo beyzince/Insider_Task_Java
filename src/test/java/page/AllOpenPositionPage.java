@@ -2,39 +2,46 @@ package page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
+import java.util.List;
 
 public class AllOpenPositionPage extends  BasePage{
     private By filterLocationDropdownLocator = By.cssSelector("span[id='select2-filter-by-location-container']");
     private By filterDepartmentDropdownLocator = By.cssSelector("span[id='select2-filter-by-department-container']");
     private By locationForExpectedLocator = By.cssSelector("select[name='filter-by-location']");
     private By departmentForExpectedLocator = By.cssSelector("select[name='filter-by-department']");
+
     private By jobPostingFrameLocator = By.xpath("(//p[@class='position-title font-weight-bold'])[4]");
     private By applyNowButtonLocator = By.xpath("(//a[@class='btn btn-navy rounded pt-2 pr-5 pb-2 pl-5'])[4]");
     private By jobShowingLocator = By.cssSelector("p[id='resultCounter']");
     private By departmentsLocatorsForList = By.cssSelector("span[class='position-department text-large font-weight-600 text-primary']");
     private By locationsLocatorForList = By.cssSelector("div[class='position-location text-large']");
-    private By positionsLocatorForList = By.cssSelector("p[class='position-title font-weight-bold']");
+
+    private By jobList = By.cssSelector("[class*='istanbul-turkey full-time']");
+    private By jobDept = By.cssSelector("[class*='position-department']");
+    private By jobLoc = By.cssSelector("[class*='position-location']");
+
+
 
     public AllOpenPositionPage(WebDriver driver) {
         super(driver);
 
     }
 
-    public AllOpenPositionPage checkPositionNames() {
-        setText(positionsLocatorForList, "Quality Assurance");
-        return this;
+
+
+
+
+
+    public int jobCount() {
+        List<WebElement> jobCount = driver.findElements(jobList);
+        return jobCount.size();
+
     }
 
-    public AllOpenPositionPage checkDepartmentNames() {
-        setText(departmentsLocatorsForList, "Quality Assurance");
-        return this;
-    }
 
-    public AllOpenPositionPage checkLocationNames() {
-        setText(locationsLocatorForList, "Istanbul, Turkey");
-        return this;
-    }
 
     public AllOpenPositionPage checkJobList() {
         Assert.assertTrue(contains(jobShowingLocator, "Showing"), "There is no job on these filters!");
@@ -43,7 +50,6 @@ public class AllOpenPositionPage extends  BasePage{
 
     public AllOpenPositionPage clickFilterLocationDropdown() throws InterruptedException {
         scrollToPage();
-        Thread.sleep(1000);
         click(filterLocationDropdownLocator);
         return this;
     }
@@ -55,7 +61,6 @@ public class AllOpenPositionPage extends  BasePage{
     }
 
     public AllOpenPositionPage selectDepartmentForQualityAssurance(){
-       // click(filterDepartmentDropdownLocator);
         selection(departmentForExpectedLocator, "Quality Assurance");
         click(filterDepartmentDropdownLocator);
         return this;
@@ -68,6 +73,10 @@ public class AllOpenPositionPage extends  BasePage{
         click(applyNowButtonLocator);
         return new LeverAppFormPage(driver);
     }
+
+
+
+
 
 
 }
